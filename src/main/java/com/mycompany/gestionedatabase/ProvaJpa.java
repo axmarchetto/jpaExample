@@ -19,21 +19,34 @@ public class ProvaJpa {
 
     public static void main(String[] args) {
 
+        TAnagrafica r = new TAnagrafica();
+
+        r.setNome("Terzo ");
+        r.setCognome("Tentativo");
+        //questro lo devo mettere perchè altrimenti mi da errore e non mi lascia lanciare il metoido per caricare 
+        ProvaJpa record = new ProvaJpa();
+       
+        record.caricarecord(r);
+
+    }
+
+    public void caricarecord(Object r) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("per_dbprova");
         EntityManager em = emf.createEntityManager();
 
-        TAnagrafica r = new TAnagrafica();
-
-        r.setNome("Secondo");
-        r.setCognome("Inserimento automatico");
-
         em.getTransaction().begin();
 
-        em.persist(r);
-        em.getTransaction().commit();
-
-        em.close();
-        emf.close();
+        try {
+            em.persist(r);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }
 
     }
+
 }
