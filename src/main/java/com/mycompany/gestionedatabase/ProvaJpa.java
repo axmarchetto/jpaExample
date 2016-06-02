@@ -5,38 +5,35 @@
  */
 package com.mycompany.gestionedatabase;
 
-import java.util.List; 
-import javax.persistence.EntityManager; 
-import javax.persistence.EntityManagerFactory; 
-import javax.persistence.Persistence; 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import entity.TAnagrafica;
- 
 
 /**
  *
  * @author Andrea
  */
 public class ProvaJpa {
-    
+
     public static void main(String[] args) {
-        
-       EntityManagerFactory emf = Persistence.createEntityManagerFactory("per_dbprova");
-       EntityManager em = emf.createEntityManager();
-       
-       TAnagrafica r = new TAnagrafica();
-       
-       r.setNome("riccardo");
-       r.setCognome("cocciante");
-       
-       em.getTransaction().begin();
-       em.persist(r);
-       em.getTransaction().commit();
-       
-       em.close();
-       emf.close();
-       
-       
-       
-       
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("per_dbprova");
+        EntityManager em = emf.createEntityManager();
+
+        TAnagrafica r = new TAnagrafica();
+
+        r.setNome("Secondo");
+        r.setCognome("Inserimento automatico");
+
+        em.getTransaction().begin();
+
+        em.persist(r);
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+
     }
 }
